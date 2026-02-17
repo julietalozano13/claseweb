@@ -12,7 +12,6 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-/* HEADER */
 .header {
     background: rgba(255, 255, 255, 0.95);
     padding: 15px 40px;
@@ -44,7 +43,6 @@ nav a.active {
     font-weight: bold;
 }
 
-/* MAIN */
 .main {
     flex: 1;
     display: flex;
@@ -69,7 +67,6 @@ h2 {
     color: #333;
 }
 
-/* STATS */
 .stats {
     display: flex;
     gap: 20px;
@@ -102,7 +99,6 @@ h2 {
     color: #555;
 }
 
-/* ACTIVITY */
 .activity {
     background: #f9f9ff;
     padding: 20px;
@@ -124,7 +120,6 @@ h2 {
     color: #444;
 }
 
-/* FOOTER */
 .footer {
     background: rgba(255,255,255,0.95);
     text-align: center;
