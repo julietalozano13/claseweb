@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* HEADER */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #667eea;
+}
+
+nav a.active {
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 900px;
+    max-width: 95%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h2 {
+    color: #333;
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 25px;
+    background: #f9f9ff;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ACTIVITY */
+.activity {
+    background: #f9f9ff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.activity h3 {
+    margin-bottom: 15px;
+}
+
+.activity ul {
+    list-style: none;
+}
+
+.activity li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #444;
+}
+
+/* FOOTER */
+.footer {
+    background: rgba(255,255,255,0.95);
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #555;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+}

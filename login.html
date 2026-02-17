@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<form id="loginForm">
+    <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" id="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" id="psw" required>
+
+<button type="submit"
+    class="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition">
+    Login
+</button>
+
+<p class="signup-link">
+    No account?
+    <a href="signup.html">Sign up</a>
+</p>
+
+
+    </div>
+</form>
+
+
+    <script>
+        const USER = "admin";
+        const PASS = "1234";
+
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const u = document.getElementById("uname").value;
+            const p = document.getElementById("psw").value;
+
+            if (u === USER && p === PASS) {
+                document.cookie = "session=active; path=/; max-age=3600";
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Credenciales incorrectas");
+            }
+        });
+    </script>
+
+</body>
+</html>
