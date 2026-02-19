@@ -29,25 +29,28 @@
     </div>
 </form>
 
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    <script>
-        const USER = "admin";
-        const PASS = "1234";
+    const username = document.getElementById("uname").value;
+    const password = document.getElementById("psw").value;
 
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-            const u = document.getElementById("uname").value;
-            const p = document.getElementById("psw").value;
+    const validUser = users.find(u => 
+        u.username === username && u.password === password
+    );
 
-            if (u === USER && p === PASS) {
-                document.cookie = "session=active; path=/; max-age=3600";
-                window.location.href = "dashboard.html";
-            } else {
-                alert("Credenciales incorrectas");
-            }
-        });
-    </script>
+    if (validUser) {
+        localStorage.setItem("session", JSON.stringify(validUser));
+        window.location.href = "dashboard.html";
+    } else {
+        alert("Invalid credentials");
+    }
+});
+</script>
+
 
 </body>
 </html>

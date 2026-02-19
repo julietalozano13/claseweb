@@ -7,24 +7,24 @@
 </head>
 <body>
 
-<form>
+<form id="signupForm">
     <div class="container">
         <h2>Create Account</h2>
 
         <label><b>Full Name</b></label>
-        <input type="text" required>
+        <input type="text" id="fullName" required>
 
         <label><b>Email</b></label>
-        <input type="email" required>
+        <input type="email" id="email" required>
 
         <label><b>Username</b></label>
-        <input type="text" required>
+        <input type="text" id="username" required>
 
         <label><b>Password</b></label>
-        <input type="password" required>
+        <input type="password" id="password" required>
 
         <label><b>Confirm Password</b></label>
-        <input type="password" required>
+        <input type="password" id="confirmPassword" required>
 
         <button type="submit">
             Create Account
@@ -36,6 +36,48 @@
         </p>
     </div>
 </form>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const userExists = users.find(u => u.username === username);
+    if (userExists) {
+        alert("User already exists");
+        return;
+    }
+
+    const newUser = {
+        fullName,
+        email,
+        username,
+        password
+    };
+
+    users.push(newUser);
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    console.log("Users:", users);
+    alert("Account created successfully!");
+
+    window.location.href = "login.html";
+});
+</script>
+
 
 </body>
 </html>
