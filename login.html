@@ -49,12 +49,6 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         alert("Invalid credentials");
     }
 });
-const existingSession = JSON.parse(localStorage.getItem("session"));
-
-if (existingSession) {
-    window.location.href = "dashboard.html";
-}
-
 </script>
 
 
