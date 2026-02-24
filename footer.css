@@ -1,0 +1,13 @@
+.footer {
+    background: rgba(255,255,255,0.95);
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #555;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+    backdrop-filter: blur(6px);
+}
+
+.footer:hover {
+    background: white;
+}
