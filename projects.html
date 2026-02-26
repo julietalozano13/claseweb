@@ -2,53 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projects</title>
+    <title>Pokédex</title>
     <link rel="stylesheet" href="projects.css">
 </head>
+
 <body>
- <div id="header-container"></div>
 
-    <main class="main">
-        <div class="container">
+<div id="header-container"></div>
 
-            <div class="top-bar">
-                <h2>Your Projects</h2>
-                <button>+ New Project</button>
-            </div>
+<main class="main">
+    <div class="top-bar">
+        <h2>Pokédex</h2>
+    </div>
 
-            <div class="projects">
+    <div class="pokemon-grid" id="pokemonContainer"></div>
+</main>
 
-                <div class="project-card">
-                    <h3>AI Research Dashboard</h3>
-                    <p>Status: <span class="active">Active</span></p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width:65%"></div>
-                    </div>
-                </div>
+<div id="footer-container"></div>
 
-                <div class="project-card">
-                    <h3>Mobile Fitness App</h3>
-                    <p>Status: <span class="completed">Completed</span></p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width:100%"></div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Web Portal Redesign</h3>
-                    <p>Status: <span class="pending">Pending</span></p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width:30%"></div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </main>
-    <div id="footer-container"></div>
 <script src="auth.js"></script>
 <script src="layout.js"></script>
+
+<script>
+const pokemonIds = [1, 4, 7]; 
+
+async function fetchPokemon(id) {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return await res.json();
+}
+
+function typeColor(type) {
+    const colors = {
+        grass: "#22c55e",
+        fire: "#ef4444",
+        water: "#3b82f6",
+        poison: "#a855f7",
+        flying: "#60a5fa",
+        bug: "#84cc16"
+    };
+    return colors[type] || "#6b7280";
+}
+
+function createCard(pokemon) {
+    const card = document.createElement("div");
+    card.classList.add("pokemon-card");
+
+    card.innerHTML = `
+        <div class="pokemon-img">
+            <img src="${pokemon.sprites.other['official-artwork'].front_default}" />
+        </div>
+        <h3>#${pokemon.id} ${pokemon.name.toUpperCase()}</h3>
+        
+        <p><strong>Height:</strong> ${pokemon.height / 10} m</p>
+        <p><strong>Weight:</strong> ${pokemon.weight / 10} kg</p>
+
+        <div class="types">
+            ${pokemon.types.map(t => 
+                `<span style="background:${typeColor(t.type.name)}">${t.type.name}</span>`
+            ).join("")}
+        </div>
+
+        <h4>Abilities</h4>
+        <p>${pokemon.abilities.map(a => a.ability.name).join(", ")}</p>
+
+        <h4>Stats</h4>
+        ${pokemon.stats.map(stat => `
+            <div class="stat">
+                ${stat.stat.name.toUpperCase()} - ${stat.base_stat}
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:${stat.base_stat}%"></div>
+                </div>
+            </div>
+        `).join("")}
+    `;
+
+    return card;
+}
+
+async function loadPokemon() {
+    const container = document.getElementById("pokemonContainer");
+
+    for (let id of pokemonIds) {
+        const pokemon = await fetchPokemon(id);
+        const card = createCard(pokemon);
+        container.appendChild(card);
+    }
+}
+
+loadPokemon();
+</script>
 
 </body>
 </html>
